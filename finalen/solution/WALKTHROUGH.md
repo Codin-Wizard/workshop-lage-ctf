@@ -10,7 +10,9 @@ Autorisasjonen ligger kun i systemprompten — ikke server-side.
 
 **Intended path:**
 
-1. `GET /` — spilleren ser endepunktene, inkl. `/trophyroom` ("krever stadionvokterens kode").
+1. `GET /` — stadion-siden viser hele overflaten: Gunnar-chatten, spillerfakta og
+   pokalrommet («krever kode»). API-et svarer fortsatt med JSON på `/players`,
+   `/chat` og `/trophyroom` for de som foretrekker curl.
 1. `POST /chat` — Gunnar babler om spillerfakta-verktøyet sitt. En terpemt forespørsel om
    interne filer gir en nektelse der han (i ren babylelie) slurper ut både basefolderen
    `/srv/players` og den forbudte filen `/srv/internal/trophy_code.txt`.

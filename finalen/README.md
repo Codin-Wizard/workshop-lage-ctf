@@ -30,7 +30,8 @@ Start oppgaven:
 docker compose up -d --build
 ```
 
-Tjenesten ligger på `http://localhost:8101`. Snakk med Gunnar:
+Tjenesten ligger på `http://localhost:8101`. **Åpne den i nettleseren** for å prate
+med Gunnar i stadion-UI-et — eller bruk API-et direkte:
 
 ```sh
 curl -X POST http://localhost:8101/chat \

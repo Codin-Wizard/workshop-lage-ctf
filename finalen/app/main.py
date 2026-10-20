@@ -16,7 +16,7 @@ import json
 import os
 import re
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, render_template, request
 
 app = Flask(__name__)
 
@@ -243,19 +243,12 @@ def llm_reply(user_message: str) -> str:
 
 @app.get("/")
 def index():
-    """Harmløs serviceinfo — oppdagelsespunkt og klarering for spillere/tester."""
-    return jsonify(
-        {
-            "service": "finalen",
-            "version": "1.0.0",
-            "match": "Cogi Madrid vs. Brainchalona",
-            "endpoints": {
-                "/chat": "prat med Gunnar, stadionvokter-botten (POST {\"message\": \"...\"})",
-                "/players": "liste over spillerfaktafiler",
-                "/trophyroom": "pokalrommet — krever stadionvokterens kode (POST {\"code\": \"...\"})",
-            },
-        }
-    )
+    """Stadion-siden — harmløs opplevelsesflate og klarering for spillere/tester.
+
+    Siden er en ren frontend (templates/ + static/) mot de samme JSON-endepunktene;
+    den avslører verken hints, flagg eller sårbarheter.
+    """
+    return render_template("index.html")
 
 
 @app.get("/players")
