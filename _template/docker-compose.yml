@@ -1,0 +1,17 @@
+# One command starts the whole challenge:
+#   docker compose up -d --build
+services:
+  challenge:
+    build: .
+    container_name: flagboard-template # TODO: rename for your challenge
+    ports:
+      - "8100:8100" # TODO: claim a free host port (8101-8199); keep host == container
+    environment:
+      # Single source of truth for the flag — pick a unique one for your challenge.
+      CHALLENGE_FLAG: "cogito{t3mpl4t3_d3bug_fl4g}"
+      LLM_BASE_URL: "https://llm.hpc.ntnu.no/v1"
+      LLM_MODEL: "openai/gpt-oss-120b"
+      LLM_API_KEY: "${NTNU_API_KEY:-}"
+    restart: unless-stopped
+  # TODO: add extra services here (database, Ollama, second agent, ...) if your challenge needs them.
+  # Remember the build rules: one command up, self-contained, no paid services.
